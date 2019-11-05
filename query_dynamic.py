@@ -196,17 +196,19 @@ if __name__ == '__main__':
             query_retrieved_document_number[query_number] = len(similarity)
         sort_similarity(similarity, query_retrieved_document_number, 'BM25')
 
-    start_time = time.time()
+
     phrase_query_compact()
     phrase_query_index_matcher()
     query_compact()
-    query_index_matcher()
+    query_index_matcher()  # pre-processing work for query
+    start_time = time.time()
     BM25()
     end_time = time.time()
     running_time = end_time - start_time
-    print("total running time: %s s" % running_time)
+    print("Implementing model time: %s s" % running_time)
     os.remove('./temp_output.csv')
     os.remove('./compact_phrase_query.csv')
+    os.remove('./compact_query.csv')
 
 
 

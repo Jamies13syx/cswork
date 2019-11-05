@@ -218,9 +218,10 @@ if __name__ == '__main__':
             query_retrieved_document_number[query_number] = len(similarity)
         sort_similarity(similarity, query_retrieved_document_number, 'LanguageModel')
 
-    start_time = time.time()
+
     query_compact()
-    query_index_matcher()
+    query_index_matcher()  # pre-processing work for query
+    start_time = time.time()
     if retrieval_model == 'BM25':
         BM25()
         os.remove('./temp_output.csv')
@@ -232,7 +233,7 @@ if __name__ == '__main__':
         os.remove('./temp_output.csv')
     end_time = time.time()
     running_time = end_time - start_time
-    print("total running time: %s s" % running_time)
+    print("Implementing model time: %s s" % running_time)
     os.remove('./compact_query.csv')
 
 
